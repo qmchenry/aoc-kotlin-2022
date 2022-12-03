@@ -16,17 +16,16 @@ fun main() {
     fun part1(input: List<String>): Int {
         return input
             .map { bagOverlap(it) }
-            .map { priority(it) }
-            .sum()
+            .sumOf { priority(it) }
     }
 
     fun part2(input: List<String>): Int {
         return input
+            .asSequence()
             .chunked(3)
             .map { it.map { it.toSet() } }
             .map { (a, b, c) -> a.intersect(b).intersect(c).first() }
-            .map { priority(it) }
-            .sum()
+            .sumOf { priority(it) }
     }
 
     // test if implementation meets criteria from the description, like:
